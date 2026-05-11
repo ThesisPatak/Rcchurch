@@ -332,7 +332,7 @@ const ChurchAdminDashboard: React.FC = () => {
             {adminUsername}
           </div>
           <button
-            onClick={() => setShowAccountPanel((current) => !current)}
+            onClick={() => setShowAccountPanel(true)}
             style={{ border: "1px solid rgba(255,255,255,0.2)", background: "transparent", color: "#ffffff", padding: "0.75rem 1rem", borderRadius: "8px", cursor: "pointer", fontWeight: 600, transition: "all 0.3s ease" }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "rgba(255,255,255,0.08)";
@@ -370,6 +370,18 @@ const ChurchAdminDashboard: React.FC = () => {
                   Manage your account securely. Only one admin account is supported.
                 </p>
               </div>
+              <button
+                onClick={() => setShowAccountPanel(false)}
+                style={{ border: "1px solid #d1d5db", background: "#f8fafc", color: "#1a3a52", padding: "0.75rem 1.2rem", borderRadius: "8px", cursor: "pointer", fontWeight: 600, transition: "all 0.3s ease" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#f1f5f9";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#f8fafc";
+                }}
+              >
+                ← Back
+              </button>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "1rem", marginTop: "1.5rem" }}>
@@ -432,6 +444,7 @@ const ChurchAdminDashboard: React.FC = () => {
           </section>
         )}
 
+        {!showAccountPanel && (
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "5fr 2fr", gap: "1.5rem", marginBottom: "1.5rem" }}>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
             {CATEGORY_OPTIONS.map((option) => (
@@ -465,7 +478,9 @@ const ChurchAdminDashboard: React.FC = () => {
             </div>
           </div>
         </div>
+        )}
 
+        {!showAccountPanel && (
         <main style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "380px 1fr", gap: "1.5rem" }}>
           <section style={{ background: "#ffffff", borderRadius: "12px", padding: "1.5rem", boxShadow: "0 2px 12px rgba(0, 0, 0, 0.06)", border: "1px solid #e8ecf1" }}>
             <h2 style={{ margin: 0, fontSize: "1.35rem", fontWeight: 700, color: "#1a3a52" }}>{selectedCategory} Record</h2>
@@ -715,6 +730,7 @@ const ChurchAdminDashboard: React.FC = () => {
             )}
           </section>
         </main>
+        )}
       </div>
     </div>
   );
